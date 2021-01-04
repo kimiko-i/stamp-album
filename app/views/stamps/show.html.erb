@@ -1,0 +1,43 @@
+<% breadcrumb :stamps, @album %>
+<main class="main">
+  <div class="inner">
+    <div class="prototype__wrapper">
+      <p class="prototype__hedding">
+        <%= image_tag @stamp.image, class: "item-img" %>
+      </p>
+      <%# link_to "HOME", root_path, class: :prototype__user %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+        <div class="prototype__manage">
+          <%= link_to "編集する", edit_album_stamp_path(@album, @stamp), class: :prototype__btn %>
+          <%= link_to "削除する", album_stamp_path(@album, @stamp), method: :delete, class: :prototype__btn %>
+        </div>
+      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
+      <%# <div class="prototype__image"> %>
+        <%# image_tag "プロトタイプの画像" %>
+      <%# </div> %>
+      <div class="prototype__body">
+        <%# <div class="prototype__detail"> %>
+          <%# <p class="detail__title"></p> %>
+          <%# <p class="detail__message"> %>
+          <%# </p> %>
+        <%# </div> %>
+        <div class="prototype__detail">
+          <p class="detail__title">
+            <table class="detail-table">
+              <tbody>
+                <tr>
+                  <th class="detail-item">神社</th>
+                  <td class="detail-value"><%= @stamp.name %></td>
+                </tr>
+                <tr>
+                  <th class="detail-item">参拝日</th>
+                  <td class="detail-value"><%= @stamp.visit_day %></td>
+                </tr>
+              </tbody>
+            </table>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

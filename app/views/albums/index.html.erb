@@ -1,0 +1,55 @@
+<main class="main">
+  <div class="inner">
+    <%# <% if user_signed_in? %>
+    <div class="greeting">
+      <%= "御朱印コレクション" %>
+    </div>
+    <%# <% end %>
+
+    <%# <div class="search-window"> %>
+    <%# form_tag (search_album_stamps_path(:album_id), method: :get), class:'form-search-wrap' do %>
+      <%# <div class="sarch-tag-field", id='tag-field'> %>
+        <%# label_tag :name, "神社検索" %>
+        <%# text_field_tag :name, params[:name] class:"input-search-tag" %>
+      <%# </div> %>
+      <%# <div id="search-result"> %>
+      <%# </div> %>
+      <%# <div class="search-submit-post"> %>
+        <%# submit_tag "検索", :name => nil, class: "search-submit-btn" %>
+      <%# </div> %>
+    <%# end %>
+
+    <div class="search-window">
+    <%# form_with scope: :search, url: search_album_stamps_path(:album_id, @stamps), method: :get, class:'form-search-wrap', local: true do |f| %>
+    <%= form_with model: @stamps, url: search_album_stamps_path(:album_id, @stamps), method: :get, class:'form-search-wrap', local: true do |f| %>
+      <div class="sarch-tag-field", id='tag-field'>
+        <%= f.label :name, "神社検索" %>
+        <%= f.text_field :name, class:"input-search-tag" %>
+      </div>
+      <div id="search-result">
+      </div>
+      <div class="search-submit-post">
+        <%= f.submit "検索", class: "search-submit-btn" %>
+      </div>
+    <% end %>
+      <div>
+        <%= link_to "神社log", album_stamps_path(:album_id) %>
+      </div>
+    </div>
+
+    <ul class='item-lists'>
+      <% @albums.each do |album| %>
+      <li class='list'>
+        <%= link_to album do %>
+        <div class='item-img-content'>
+          <%= image_tag album.image.url, class: "item-img" %>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <%# <div class="card__wrapper">
+      <%= render partial: "album", collection: @albums, locals: { album: @albums } %>
+    <%# </div> %>
+  </div>
+</main>

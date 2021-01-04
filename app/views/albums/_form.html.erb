@@ -1,0 +1,19 @@
+<%= form_with(model: @album, local: true) do |f|%>
+  <div class="img-upload">
+    <%= image_tag @album.image.url if @album.image.present? %>
+    <div class="click-upload">
+      <p>
+        クリックしてファイルをアップロード
+      </p>
+      <%= f.file_field :image, id:"item-image"%>
+      <div id="image-list"></div>
+    </div>
+  </div>
+  <div class="field">
+    <%= f.label :category, "カテゴリー" %><br />
+    <%= f.text_area :category, class: :form__text %>
+  </div>
+  <div class="actions">
+    <%= f.submit "保存する", class: :form__btn %>
+  </div>
+<% end %>

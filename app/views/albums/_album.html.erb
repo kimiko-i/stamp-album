@@ -1,0 +1,19 @@
+<div class="card">
+  <%= link_to image_tag(album.image, class: :card__img), album_path(album) %>
+  <%# <div class="card__body"> %>
+    <%# <%= link_to image_tag(album.image), album_path(album), class: :card__title %> 
+    <%# <p class="card__summary"> %>
+      <%# <%= "プロトタイプのキャッチコピー" %>
+    <%# </p> %>
+    <%# <%= link_to "by プロトタイプの投稿者名", root_path, class: :card__user %>
+  <%# </div> %>
+</div>
+<ul class='item-lists'>
+  <% @albums.each do |album| %>
+  <li class='list'>
+    <%= link_to album do %>
+    <div class='item-img-content'>
+      <%= image_tag album.image, class: "item-img" %>
+    </div>
+  </li>    
+</ul>

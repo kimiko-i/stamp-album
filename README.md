@@ -1,24 +1,57 @@
-# README
+# 御朱印アプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## アプリケーションの概要
 
-Things you may want to cover:
+- 自分の御朱印を管理・検索できるアプリケーションです。
 
-* Ruby version
+## [URL]
 
-* System dependencies
+## テストアカウント
 
-* Configuration
+- メールアドレス:
+- パスワード:
 
-* Database creation
+## 利用方法
 
-* Database initialization
+- ユーザー登録
+  - 新規登録画面からユーザー登録が行えます。
+- 御朱印帳の登録
+  - ユーザー登録後、御朱印帳の登録・編集・削除が行えます。
+- 御朱印の登録
+  - 御朱印帳の登録後、御朱印の登録・編集・削除が行えます。
+- 御朱印の検索
+  - 検索欄に神社名を入力して検索すると該当の御朱印を検索できます。
+-log機能
+  - 神社logから過去の御朱印を時系列で確認することができます。
 
-* How to run the test suite
+## テーブル設計
+### users テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column            | Type     | Options           |
+|:-----------------:|:--------:|:-----------------:|
+| name              | string   | null: false       |
+| email             | string   | null: false       |
+| encrypted_password| string   | null: false       |
 
-* Deployment instructions
+### albums テーブル
 
-* ...
+| Column       | Type    | Options         |
+|:------------:|:-------:|:---------------:|
+| image        | text    | null: false     |
+| category     | string  | null: false     |
+
+#### Association
+
+- has_many :stamps
+
+### stamps テーブル
+
+| Column      | Type        | Options            |
+|:-----------:|:-----------:|:------------------:|
+| name        | string      | null: false        |
+| album       | references  | foreign_key: true  |
+| visit_day   | date        | null: false        |
+
+#### Association
+
+- belongs_to :album

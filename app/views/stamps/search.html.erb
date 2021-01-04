@@ -1,0 +1,14 @@
+<p>検索結果</p>
+<ul class='item-lists'>
+  <% @stamps.each do |stamp| %>
+  <li class='list'>
+  <%= link_to album_stamp_path(stamp.album_id, stamp) do %>
+    <div class='item-img-content'>
+      <%= image_tag stamp.image, class: "item-img" %><br />
+    </div>
+      <%= stamp.name %><br />
+      <%= stamp.visit_day %>
+  <% end %>
+  </li>
+  <% end %>
+</ul>

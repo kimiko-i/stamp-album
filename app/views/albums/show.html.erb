@@ -1,0 +1,51 @@
+<% breadcrumb :albums %>
+<main class="main">
+  <div class="inner">
+    <div class="prototype__wrapper">
+      <p class="prototype__hedding">
+        <%= image_tag @album.image.url %>
+      </p>
+      <div class="prototype__detail">
+        <p class="detail__title">
+          <table class="detail-table">
+            <tbody>
+              <tr>
+                <th class="detail-item">カテゴリー</th>
+                <td class="detail-value"><%= @album.category %></td>
+              </tr>
+            </tbody>
+          </table>
+        </p>
+      </div>
+      <%# link_to "by プロトタイプの投稿者", root_path, class: :prototype__user %>
+      <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
+        <div class="prototype__manage">
+          <%= link_to "編集する", edit_album_path(@album), class: :prototype__btn %>
+          <%= link_to "御朱印の追加", new_album_stamp_path(@album), class: :prototype__btn %>
+          <%= link_to "削除する", album_path(@album), method: :delete, class: :prototype__btn %>
+        </div>
+      <%# // プロトタイプの投稿者とログインしているユーザーが同じであれば上記を表示する %>
+      <div class="prototype__image">
+        <%# image_tag "プロトタイプの画像" %>
+      </div>
+      <div class="prototype__body">
+        <div class="prototype__detail">
+          <p class="detail__title">御朱印一覧</p>
+          <p class="detail__message">
+            <ul class='item-lists'>
+              <% @album.stamps.each do |stamp| %>
+              <li class='list'>
+                <%= link_to album_stamp_path(@album, stamp.id) do %>
+                <div class='item-img-content'>
+                  <%= image_tag stamp.image, class: "item-img" %>
+                </div>
+                <% end %>
+              </li>
+              <% end %>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
